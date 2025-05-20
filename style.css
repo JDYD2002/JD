@@ -7,17 +7,17 @@ body {
 
 .instagram-link {
   text-align: center;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .instagram-link a {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   color: #e1306c;
-  font-weight: bold;
+  font-weight: 500;
   text-decoration: none;
-  font-size: 1em;
+  font-size: 1rem;
   transition: color 0.3s;
 }
 
@@ -26,9 +26,11 @@ body {
 }
 
 .instagram-link .icon {
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
 }
+
 
 /* Responsivo para telas grandes */
 @media (min-width: 768px) {
