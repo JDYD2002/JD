@@ -5,6 +5,32 @@ body {
   color: #333;
 }
 
+.instagram-link {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.instagram-link a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #e1306c;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1.1em;
+  transition: color 0.3s;
+}
+
+.instagram-link a:hover {
+  color: #c2185b;
+}
+
+.instagram-link .icon {
+  width: 24px;
+  height: 24px;
+}
+
+
 header {
   background-color: #2e7d32;
   color: white;
