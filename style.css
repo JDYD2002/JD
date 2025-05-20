@@ -17,7 +17,7 @@ body {
   color: #e1306c;
   font-weight: bold;
   text-decoration: none;
-  font-size: 1.1em;
+  font-size: 1em;
   transition: color 0.3s;
 }
 
@@ -26,9 +26,21 @@ body {
 }
 
 .instagram-link .icon {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
 }
+
+/* Responsivo para telas grandes */
+@media (min-width: 768px) {
+  .instagram-link a {
+    font-size: 1.05em;
+  }
+
+  .instagram-link .icon {
+    width: 18px;
+    height: 18px;
+  }
+
 
 
 header {
