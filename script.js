@@ -1,4 +1,4 @@
-// Carrossel automático
+// Carrossel
 const imagens = document.querySelectorAll('.carousel img');
 let indice = 0;
 
@@ -10,10 +10,18 @@ function trocarImagem() {
 
 setInterval(trocarImagem, 4000);
 
-// Menu hamburguer responsivo
-const menuToggle = document.getElementById('menu-toggle');
-const navMenu = document.getElementById('nav-menu');
+// Modal
+const modal = document.getElementById("modal");
+const modalImg = document.getElementById("modal-img");
+const closeModal = document.querySelector(".close");
 
-menuToggle.addEventListener('click', () => {
-  navMenu.classList.toggle('active');
+imagens.forEach(img => {
+  img.addEventListener('click', () => {
+    modal.style.display = "block";
+    modalImg.src = img.src;
+  });
 });
+
+closeModal.onclick = () => {
+  modal.style.display = "none";
+};
