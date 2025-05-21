@@ -209,19 +209,32 @@ html {
   }
 
   nav a {
-    display: block;
-    margin: 10px 0;
+    display: inline-block; /* vamos mudar isso também no item 2 */
+    margin: 0 10px;
   }
 
   section {
     padding: 20px 15px;
   }
 
+  /* Aumenta a altura do carrossel no mobile */
   .carousel {
-    height: 600px;
+    height: 1360px;
   }
 
   .carousel img {
-    height: 600px;
+    height: 1360px;
   }
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+nav a {
+  display: inline-block;
+  margin: 5px 10px;
 }
