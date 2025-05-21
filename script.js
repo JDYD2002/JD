@@ -28,21 +28,6 @@ function pararCarrossel() {
   clearInterval(intervalo);
 }
 
-// Navegação manual
-btnPrev.addEventListener('click', () => {
-  pararCarrossel();
-  indice = (indice - 1 + imagens.length) % imagens.length;
-  mostrarImagem(indice);
-  iniciarCarrossel();
-});
-
-btnNext.addEventListener('click', () => {
-  pararCarrossel();
-  indice = (indice + 1) % imagens.length;
-  mostrarImagem(indice);
-  iniciarCarrossel();
-});
-
 // Abrir modal com imagem clicada
 imagens.forEach((img, i) => {
   img.addEventListener('click', () => {
@@ -69,6 +54,7 @@ modal.addEventListener('click', (e) => {
 // Inicia carrossel automático ao carregar a página
 iniciarCarrossel();
 
+// Navegação manual otimizada
 function ajustarIndice(direcao) {
   pararCarrossel();
   if (direcao === 'anterior') {
