@@ -72,28 +72,64 @@ h2 {
 .carousel {
   position: relative;
   width: 100%;
-  height: 1360px; /* Aumentado */
+  height: 1360px; /* ajuste conforme a altura desejada */
   overflow: hidden;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
 .carousel img {
-  width: 100%;
-  height: 1360px; /* Aumentado */
-  object-fit: cover;
   position: absolute;
   top: 0;
   left: 0;
+  width: 100%;
+  height: 1360px;
+  object-fit: cover;
   opacity: 0;
-  transition: opacity 1.2s ease-in-out, transform 0.5s ease;
+  transition: opacity 1s ease-in-out;
   cursor: pointer;
+  z-index: 1;
 }
 
 
 .carousel img.active {
   opacity: 1;
+  z-index: 2;
 }
+.carousel-btn {
+  position: absolute;
+  bottom: 20px; /* mantive o botão embaixo */
+  top: auto;
+  background-color: rgba(46, 125, 50, 0.7);
+  border: none;
+  color: white;
+  font-size: 2.5em;
+  padding: 10px 15px;  /* padding para aumentar área clicável */
+  cursor: pointer;
+  border-radius: 5px;
+  user-select: none;
+  transition: background-color 0.3s ease;
+  z-index: 20; /* aumenta o z-index para garantir estar acima das imagens */
+  width: 50px;  /* largura fixa para botões */
+  height: 50px; /* altura fixa */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.carousel-btn:hover {
+  background-color: rgba(46, 125, 50, 1);
+}
+.carousel-btn.next {
+  right: 350px;
+}
+.carousel-btn.prev {
+  left: 350px;
+}
+
+
 
 form {
   display: flex;
@@ -204,6 +240,23 @@ html {
 
 /* Apenas para celular */
 @media (max-width: 768px) {
+
+  .carousel {
+    height: 400px;
+  }
+
+  .carousel img {
+    object-fit: cover;
+  }
+
+  .carousel-btn {
+    width: 60px;
+    height: 60px;
+    font-size: 3em;
+  }
+}
+
+
   header h1 {
     font-size: 1.5em;
   }
@@ -224,26 +277,9 @@ html {
     padding: 20px 15px;
   }
 
-  .carousel {
-    height: 1360px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .carousel img {
-    height: 100%;
-    width: auto; /* evita esticar e cortar */
-    object-fit: contain;
-    position: relative; /* remove o absolute */
-    opacity: 0;
-    transition: opacity 1.2s ease-in-out, transform 0.5s ease;
-    cursor: pointer;
-  }
 
   .carousel img.active {
     opacity: 1;
   }
-}
+
 
