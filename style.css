@@ -202,39 +202,48 @@ html {
 }
 
 
-/* Responsivo para celular */
+/* Apenas para celular */
 @media (max-width: 768px) {
   header h1 {
     font-size: 1.5em;
   }
 
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
   nav a {
-    display: inline-block; /* vamos mudar isso também no item 2 */
-    margin: 0 10px;
+    display: inline-block;
+    margin: 5px 10px;
   }
 
   section {
     padding: 20px 15px;
   }
 
-  /* Aumenta a altura do carrossel no mobile */
   .carousel {
     height: 1360px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .carousel img {
-    height: 1360px;
+    height: 100%;
+    width: auto; /* evita esticar e cortar */
+    object-fit: contain;
+    position: relative; /* remove o absolute */
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out, transform 0.5s ease;
+    cursor: pointer;
+  }
+
+  .carousel img.active {
+    opacity: 1;
   }
 }
 
-nav {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-}
-
-nav a {
-  display: inline-block;
-  margin: 5px 10px;
-}
