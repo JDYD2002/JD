@@ -18,7 +18,7 @@
     gtag('js', new Date());
     gtag('config', 'G-6WKPL85H4L');
   </script>
-  </head>
+</head>
 <body>
   <header>
     <h1>Jovens Discípulos</h1>
@@ -26,6 +26,7 @@
       <a href="#sobre">Sobre</a>
       <a href="#eventos">Eventos</a>
       <a href="#galeria">Galeria</a>
+      <a href="#louvores">Louvores</a>
       <a href="#contato">Contato</a>
     </nav>
   </header>
@@ -38,20 +39,59 @@
   <section id="eventos" data-aos="zoom-in">
     <h2>Próximos Eventos</h2>
     <ul>
-      <li><strong>Célula:</strong> Toda terça às 19:30</li>
-    </ul>
-  </section>
+    <li>
+      <strong>Célula Hefzibá:</strong> Toda terça às 19:30
+      <br />
+      <button id="btnToggleVersiculo">Versículo base</button>
+    </li>
+  </ul>
+
+  <div id="conteudoVersiculo" style="display:none; margin-top: 100px; max-width: 600px; font-style: italic;">
+    <p>
+      Não mais a chamarão abandonada,<br>
+      nem desamparada à sua terra.<br>
+      Você, porém, será chamada <strong>Hefzibá</strong>,<br>
+      e a sua terra, Beulá,<br>
+      pois o Senhor terá prazer em você,<br>
+      e a sua terra estará casada.
+    </p>
+    <p style="width: 300px;text-align:right; font-weight:bold; color:#6a6a6a;">Isaías 62:4</p>
+  </div>
+</section>
+
+
+
+
+  <section id="louvores" data-aos="fade-up">
+  <h2>Playlist da célula</h2>
+  <div class="video-carousel">
+    <button class="video-btn prev">&#10094;</button>
+
+    <div class="video-slide active">
+      <iframe src="https://www.youtube.com/embed/rQI3AUcDg6s" title="Isaías 62 - Rafael Teixeira"
+        frameborder="0" allowfullscreen></iframe>
+    </div>
+<div class="video-slide active">
+  <iframe src="https://www.youtube.com/embed/G7-SeRxFITA" title="Isaías 62 - Novo Vídeo"
+    frameborder="0" allowfullscreen></iframe>
+</div>
+
+
+    <button class="video-btn next">&#10095;</button>
+  </div>
+</section>
+
 
   <section id="galeria" data-aos="fade-up">
     <h2>Galeria</h2>
-<div class="carousel">
-  <button class="carousel-btn prev" aria-label="Imagem anterior">&#10094;</button>
-  <button class="carousel-btn next" aria-label="Próxima imagem">&#10095;</button>
+    <div class="carousel">
+      <button class="carousel-btn prev" aria-label="Imagem anterior">&#10094;</button>
+      <button class="carousel-btn next" aria-label="Próxima imagem">&#10095;</button>
 
-  <img src="assets/WhatsApp Image 2025-05-20 at 22.20.25.jpeg" class="active" alt="Célula" />
-  <img src="assets/JD.png" alt="Logo" />
-  <img src="assets/JD.png" alt="Grupo reunido na igreja" />
-</div>
+      <img src="assets/WhatsApp Image 2025-05-20 at 22.20.25.jpeg" class="active" alt="Célula" />
+      <img src="assets/JD.png" alt="Logo" />
+      <img src="assets/JD.png" alt="Grupo reunido na igreja" />
+    </div>
 
     <!-- Modal -->
     <div id="modal" class="modal">
@@ -60,42 +100,39 @@
     </div>
   </section>
 
+
+
   <section id="contato" data-aos="fade-up">
+    <h2>Contato</h2>
+    <form action="https://formsubmit.co/ydjd2002@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="Nova mensagem do site - Jovens Discípulos">
+      <input type="email" name="email" placeholder="Seu e-mail" required>
+      <input type="text" name="nome" placeholder="Seu nome" required>
+      <textarea name="mensagem" placeholder="Sua mensagem" rows="5" required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
 
-  <h2>Contato</h2>
-  <form action="https://formsubmit.co/ydjd2002@gmail.com" method="POST">
-    <input type="hidden" name="_subject" value="Nova mensagem do site - Jovens Discípulos">
+    <div class="instagram-link">
+      <a href="https://www.instagram.com/jovenssdiscipulos" rel="noopener noreferrer">
+        <img src="https://img.icons8.com/ios-filled/30/ffffff/instagram-new.png" alt="Instagram">
+        Siga-nos no Instagram
+      </a>
+    </div>
 
-    <input type="email" name="email" placeholder="Seu e-mail" required>
-    <input type="text" name="nome" placeholder="Seu nome" required>
-    <textarea name="mensagem" placeholder="Sua mensagem" rows="5" required></textarea>
-    <button type="submit">Enviar</button>
-  </form>
-
-<div class="instagram-link">
-  <a href="https://www.instagram.com/jovenssdiscipulos" rel="noopener noreferrer">
-    <img src="https://img.icons8.com/ios-filled/30/ffffff/instagram-new.png" alt="Instagram">
-    Siga-nos no Instagram
-  </a>
-</div>
-  </div>
-
-<div class="whatsapp-link">
-  <a href="https://chat.whatsapp.com/INsIy5e1vIwLFQLTSx79GB" rel="noopener noreferrer">
-    <img src="https://img.icons8.com/ios-filled/30/FFFFFF/whatsapp--v1.png" alt="WhatsApp">
-    Entrar no grupo da Célula
-  </a>
-</div>
-</section>
-
+    <div class="whatsapp-link">
+      <a href="https://chat.whatsapp.com/INsIy5e1vIwLFQLTSx79GB" rel="noopener noreferrer">
+        <img src="https://img.icons8.com/ios-filled/30/FFFFFF/whatsapp--v1.png" alt="WhatsApp">
+        Entrar no grupo da Célula
+      </a>
+    </div>
+  </section>
 
   <footer>
     <p>&copy; 2025 Jovens Discípulos - AD Canaã II</p>
   </footer>
 
-  <script src="script.js" defer></script>
+  <script src="script.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>AOS.init();</script>
 </body>
 </html>
-
