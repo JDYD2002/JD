@@ -1,38 +1,33 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Elementos do carrossel de imagens e modal
+  // Carrossel de imagens
   const imagens = document.querySelectorAll('.carousel img');
   const modal = document.getElementById("modal");
   const modalImg = document.getElementById("modal-img");
   const closeModal = document.querySelector(".close");
-  const botoes = document.querySelectorAll('.carousel-btn');
-  const btnPrev = botoes[0];
-  const btnNext = botoes[1];
-  document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && modal.style.display === "block") {
-    modal.style.display = "none";
-    iniciarCarrossel();
-  }
-});
+  const btnPrev = document.querySelector('.carousel-btn.prev');
+  const btnNext = document.querySelector('.carousel-btn.next');
 
-
-  // Elementos do carrossel de vídeos
+  // Carrossel de vídeos
   const videoSlides = document.querySelectorAll('.video-slide');
   const videoPrev = document.querySelector('.video-btn.prev');
   const videoNext = document.querySelector('.video-btn.next');
 
-  // Toggle do versículo
+  // Versículo
   const btn = document.getElementById('btnToggleVersiculo');
   const conteudo = document.getElementById('conteudoVersiculo');
 
-  btn.addEventListener('click', () => {
-    if (conteudo.style.display === 'none' || conteudo.style.display === '') {
-      conteudo.style.display = 'block';
-      btn.textContent = 'Esconder Versículo';
-    } else {
-      conteudo.style.display = 'none';
-      btn.textContent = 'Versículo base';
-    }
-  });
+  // Versículo toggle
+  if (btn && conteudo) {
+    btn.addEventListener('click', () => {
+      if (conteudo.style.display === 'none' || conteudo.style.display === '') {
+        conteudo.style.display = 'block';
+        btn.textContent = 'Esconder Versículo';
+      } else {
+        conteudo.style.display = 'none';
+        btn.textContent = 'Versículo base';
+      }
+    });
+  }
 
   // Controle do carrossel de vídeos
   let currentVideo = 0;
@@ -56,11 +51,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  showVideo(currentVideo);
+  if (videoSlides.length > 0) {
+    showVideo(currentVideo);
+  }
 
-  // Controle do carrossel de imagens
+  // Carrossel de imagens
   let indice = 0;
-  let intervalo;
+  let intervalo = null;
 
   function mostrarImagem(i) {
     imagens.forEach(img => img.classList.remove('active'));
@@ -76,50 +73,61 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function iniciarCarrossel() {
+    pararCarrossel();
     intervalo = setInterval(trocarImagem, 4000);
   }
 
   function pararCarrossel() {
-    clearInterval(intervalo);
+    if (intervalo) clearInterval(intervalo);
   }
 
-  imagens.forEach((img, i) => {
-    img.addEventListener('click', () => {
-      pararCarrossel();
-      modal.style.display = "block";
-      modalImg.src = img.src;
-    });
-  });
-
-  if (closeModal) {
-    closeModal.onclick = () => {
-      modal.style.display = "none";
-      iniciarCarrossel();
-    };
-  }
-
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
-      modal.style.display = "none";
-      iniciarCarrossel();
-    }
-  });
-
-  iniciarCarrossel();
-
-  function ajustarIndice(direcao) {
-    pararCarrossel();
-    if (direcao === 'anterior') {
-      indice = (indice - 1 + imagens.length) % imagens.length;
-    } else if (direcao === 'proxima') {
-      indice = (indice + 1) % imagens.length;
-    }
-    mostrarImagem(indice);
+  if (imagens.length > 0) {
+    mostrarImagem(0);
     iniciarCarrossel();
-  }
 
-  if (btnPrev && btnNext) {
-    btnPrev.addEventListener('click', () => ajustarIndice('anterior'));
-    btnNext.addEventListener('click', () => ajustarIndice('proxima'));
+    imagens.forEach((img) => {
+      img.addEventListener('click', () => {
+        pararCarrossel();
+        modal.style.display = "block";
+        modalImg.src = img.src;
+      });
+    });
+
+    if (closeModal) {
+      closeModal.onclick = () => {
+        modal.style.display = "none";
+        iniciarCarrossel();
+      };
+    }
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = "none";
+        iniciarCarrossel();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && getComputedStyle(modal).display !== 'none') {
+        modal.style.display = "none";
+        iniciarCarrossel();
+      }
+    });
+
+    function ajustarIndice(direcao) {
+      pararCarrossel();
+      if (direcao === 'anterior') {
+        indice = (indice - 1 + imagens.length) % imagens.length;
+      } else if (direcao === 'proxima') {
+        indice = (indice + 1) % imagens.length;
+      }
+      mostrarImagem(indice);
+      iniciarCarrossel();
+    }
+
+    if (btnPrev && btnNext) {
+      btnPrev.addEventListener('click', () => ajustarIndice('anterior'));
+      btnNext.addEventListener('click', () => ajustarIndice('proxima'));
+    }
   }
 });
