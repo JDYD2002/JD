@@ -7,6 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const botoes = document.querySelectorAll('.carousel-btn');
   const btnPrev = botoes[0];
   const btnNext = botoes[1];
+  document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && modal.style.display === "block") {
+    modal.style.display = "none";
+    iniciarCarrossel();
+  }
+});
+
 
   // Elementos do carrossel de vídeos
   const videoSlides = document.querySelectorAll('.video-slide');
