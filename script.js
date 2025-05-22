@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // Elementos do carrossel de imagens e modal
   const imagens = document.querySelectorAll('.carousel img');
   const modal = document.getElementById("modal");
   const modalImg = document.getElementById("modal-img");
@@ -7,12 +8,58 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnPrev = botoes[0];
   const btnNext = botoes[1];
 
+  // Elementos do carrossel de vídeos
+  const videoSlides = document.querySelectorAll('.video-slide');
+  const videoPrev = document.querySelector('.video-btn.prev');
+  const videoNext = document.querySelector('.video-btn.next');
+
+  // Toggle do versículo
+  const btn = document.getElementById('btnToggleVersiculo');
+  const conteudo = document.getElementById('conteudoVersiculo');
+
+  btn.addEventListener('click', () => {
+    if (conteudo.style.display === 'none' || conteudo.style.display === '') {
+      conteudo.style.display = 'block';
+      btn.textContent = 'Esconder Versículo';
+    } else {
+      conteudo.style.display = 'none';
+      btn.textContent = 'Versículo base';
+    }
+  });
+
+  // Controle do carrossel de vídeos
+  let currentVideo = 0;
+
+  function showVideo(index) {
+    videoSlides.forEach(slide => slide.classList.remove('active'));
+    if (videoSlides[index]) {
+      videoSlides[index].classList.add('active');
+    }
+  }
+
+  if (videoPrev && videoNext) {
+    videoPrev.addEventListener('click', () => {
+      currentVideo = (currentVideo - 1 + videoSlides.length) % videoSlides.length;
+      showVideo(currentVideo);
+    });
+
+    videoNext.addEventListener('click', () => {
+      currentVideo = (currentVideo + 1) % videoSlides.length;
+      showVideo(currentVideo);
+    });
+  }
+
+  showVideo(currentVideo);
+
+  // Controle do carrossel de imagens
   let indice = 0;
   let intervalo;
 
   function mostrarImagem(i) {
     imagens.forEach(img => img.classList.remove('active'));
-    imagens[i].classList.add('active');
+    if (imagens[i]) {
+      imagens[i].classList.add('active');
+    }
     indice = i;
   }
 
@@ -37,10 +84,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  closeModal.onclick = () => {
-    modal.style.display = "none";
-    iniciarCarrossel();
-  };
+  if (closeModal) {
+    closeModal.onclick = () => {
+      modal.style.display = "none";
+      iniciarCarrossel();
+    };
+  }
 
   modal.addEventListener('click', (e) => {
     if (e.target === modal) {
@@ -62,6 +111,8 @@ document.addEventListener('DOMContentLoaded', () => {
     iniciarCarrossel();
   }
 
-  btnPrev.addEventListener('click', () => ajustarIndice('anterior'));
-  btnNext.addEventListener('click', () => ajustarIndice('proxima'));
+  if (btnPrev && btnNext) {
+    btnPrev.addEventListener('click', () => ajustarIndice('anterior'));
+    btnNext.addEventListener('click', () => ajustarIndice('proxima'));
+  }
 });
