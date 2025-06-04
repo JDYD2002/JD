@@ -21,7 +21,10 @@
 </head>
 <body>
   <header>
-    <h1>Jovens Discípulos</h1>
+
+    
+    <h1 id="animated-title"></h1>
+
     <nav>
       <a href="#sobre">Sobre</a>
       <a href="#eventos">Eventos</a>
@@ -36,17 +39,17 @@
     <p>Somos o grupo de jovens da AD Canaã II. Nosso propósito é viver e compartilhar o amor de Cristo através da comunhão, serviço e crescimento espiritual.</p>
   </section>
 
-  <section id="eventos" data-aos="zoom-in">
-    <h2>Próximos Eventos</h2>
-    <ul>
+<section id="eventos" data-aos="zoom-in">
+  <h2>Próximos Eventos</h2>
+  <ul>
     <li>
       <strong>Célula Hefzibá:</strong> Toda terça às 19:30
       <br />
-      <button id="btnToggleVersiculo">Versículo base</button>
+      <button id="btnToggleVersiculo" aria-expanded="false" aria-controls="conteudoVersiculo">Versículo base</button>
     </li>
   </ul>
 
-  <div id="conteudoVersiculo" style="display:none; margin-top: 100px; max-width: 600px; font-style: italic;">
+  <div id="conteudoVersiculo" hidden style="margin-top: 20px; max-width: 600px; font-style: italic;">
     <p>
       Não mais a chamarão abandonada,<br>
       nem desamparada à sua terra.<br>
@@ -58,7 +61,6 @@
     <p style="width: 300px;text-align:right; font-weight:bold; color:#6a6a6a;">Isaías 62:4</p>
   </div>
 </section>
-
 
 
 
@@ -83,23 +85,23 @@
 </section>
 
 
-  <section id="galeria" data-aos="fade-up">
-    <h2>Galeria</h2>
-    <div class="carousel">
-      <button class="carousel-btn prev" aria-label="Imagem anterior">&#10094;</button>
-      <button class="carousel-btn next" aria-label="Próxima imagem">&#10095;</button>
-<img src="assets/WhatsApp Image 2025-05-20 at 22.20.25.jpeg" class="active" alt="Célula" />
-      <img src="assets/JD.png" alt="Logo" />
-      <img src="assets/JD.png" alt="Grupo reunido na igreja" />
-    </div>
+<!-- Galeria com modal -->
+<section id="galeria" data-aos="fade-up">
+  <h2>Galeria</h2>
+  <div class="carousel">
+    <button class="carousel-btn prev" aria-label="Imagem anterior">&#10094;</button>
+    <button class="carousel-btn next" aria-label="Próxima imagem">&#10095;</button>
+    <img src="assets/WhatsApp Image 2025-05-20 at 22.20.25.jpeg" class="active" alt="Célula" tabindex="0" />
+    <img src="assets/JD.png" alt="Logo" tabindex="0" />
+    <img src="assets/JD.png" alt="Grupo reunido na igreja" tabindex="0" />
+  </div>
 
-    <!-- Modal -->
-    <div id="modal" class="modal">
-      <span class="close">&times;</span>
-      <img class="modal-content" id="modal-img" />
-    </div>
-  </section>
-
+  <!-- Modal -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1">
+    <button class="close" aria-label="Fechar modal">&times;</button>
+    <img class="modal-content" id="modal-img" alt="" />
+  </div>
+</section>
 
 
   <section id="contato" data-aos="fade-up">
@@ -134,8 +136,31 @@
   <script src="script.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>AOS.init();</script>
-  <div id="jesusinho-button" onclick="abrirJesusinho()" title="Falar com Jesusinho">
-  🙏
+
+  <script>
+  const fullText = "Jovens Discípulos";
+  const titleElement = document.getElementById("animated-title");
+  let index = 0;
+
+  function typeWriter() {
+    if (index < fullText.length) {
+      titleElement.textContent += fullText.charAt(index);
+      index++;
+      setTimeout(typeWriter, 150);
+    }
+  }
+typeWriter();
+</script>
+<!-- Botão flutuante Jesusinho -->
+<button id="btn-jesusinho" class="btn-jesusinho" title="Abrir Jesusinho Virtual">✝️</button>
+
+<!-- Modal Jesusinho -->
+<div id="modal-jesusinho" class="modal-jesusinho">
+  <div class="modal-content-jesusinho">
+       <button id="close-modal" class="close-btn" aria-label="Fechar">&times;</button>
+    <iframe src="https://jesusinho.netlify.app/" frameborder="0" class="iframe-jesusinho"></iframe>
+  </div>
 </div>
+
 </body>
 </html>
