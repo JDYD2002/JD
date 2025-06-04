@@ -10,10 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const videoSlides = document.querySelectorAll('.video-slide');
   const videoPrev = document.querySelector('.video-btn.prev');
   const videoNext = document.querySelector('.video-btn.next');
-
   const btnVersiculo = document.getElementById('btnToggleVersiculo');
   const conteudoVersiculo = document.getElementById('conteudoVersiculo');
-
   // Modal Jesusinho
   const btnJesusinho = document.getElementById('btn-jesusinho');
   const modalJesusinho = document.getElementById('modal-jesusinho');
@@ -22,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
   btnJesusinho.addEventListener('click', () => {
     modalJesusinho.style.display = 'flex';
   });
+  
 
   closeModalBtnJesusinho.addEventListener('click', () => {
     modalJesusinho.style.display = 'none';
@@ -145,7 +144,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     if (closeModalBtn) {
-      closeModalBtn.addEventListener('click', closeModal);
+      closeModalBtn.addEventListener('click', () => {
+        if (modal.classList.contains('show')) {
+          closeModal();
+        }
+      });
     }
 
     modal.addEventListener('click', (e) => {
