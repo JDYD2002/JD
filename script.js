@@ -129,5 +129,9 @@ document.addEventListener('DOMContentLoaded', () => {
       btnPrev.addEventListener('click', () => ajustarIndice('anterior'));
       btnNext.addEventListener('click', () => ajustarIndice('proxima'));
     }
+      function abrirJesusinho() {
+    alert("Jesusinho está vindo 🙌 (aqui você chama o assistente)");
+    // Aqui você pode abrir um modal, iframe ou chamar uma função real do Jesusinho
+  }
   }
 });
