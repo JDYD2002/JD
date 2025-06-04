@@ -4,6 +4,26 @@ body {
   background-color: #f4f6f8;
   color: #333;
 }
+<!-- Estilo do botão -->
+  #jesusinho-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #f1c40f, #f39c12);
+    color: white;
+    font-size: 30px;
+    padding: 15px 18px;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease;
+    z-index: 9999;
+  }
+
+  #jesusinho-button:hover {
+    transform: scale(1.1);
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+  }
 #btnToggleVersiculo {
   width: 200px;
   background-color: #2e7d32;
