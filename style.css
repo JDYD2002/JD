@@ -4,26 +4,113 @@ body {
   background-color: #f4f6f8;
   color: #333;
 }
+#animated-title {
+  font-weight: 700;
+  font-size: 2.4rem;
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 2.8rem;
+  letter-spacing: 1.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid white;
+  animation: blink-caret 0.75s step-end infinite;
+}
 
-  #jesusinho-button {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: linear-gradient(135deg, #f1c40f, #f39c12);
-    color: white;
-    font-size: 30px;
-    padding: 15px 18px;
-    border-radius: 50%;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    cursor: pointer;
-    transition: transform 0.3s ease, background 0.3s ease;
-    z-index: 9999;
+@keyframes blink-caret {
+  50% {
+    border-color: transparent;
   }
+}
+.close-btn {
+  position: absolute;  /* deixa fixo em relação ao modal */
+  top: 1px;           /* distância do topo da caixa modal */
+  right: 368px;         /* distância da direita da caixa modal */
+  font-size: 28px;     /* tamanho do "X" */
+  font-weight: bold;
+  color: #333;         /* cor do "X" */
+  background: transparent;  /* sem fundo */
+  border: none;        /* sem borda */
+  cursor: pointer;     /* muda o cursor para indicar clicável */
+  transition: color 0.3s ease;  /* efeito suave ao mudar cor */
+}
 
-  #jesusinho-button:hover {
-    transform: scale(1.1);
-    background: linear-gradient(135deg, #f39c12, #e67e22);
-  }
+.close-btn:hover {
+  color: #d33;         /* cor quando passar o mouse */
+}
+/* Botão flutuante */
+.btn-jesusinho {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #5cb85c;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 30px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+.btn-jesusinho:hover {
+  background-color: #4a9c4a;
+}
+
+/* Modal */
+#modal-jesusinho {
+  position: fixed; /* ou relative */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Conteúdo do modal */
+.modal-content-jesusinho {
+  width: 90%;
+  max-width: 400px;
+  height: 700px;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+}
+
+/* Botão fechar */
+#close-modal {
+  background-color: #28a745; /* verde que você mencionou */
+  color: white;
+  border: none;
+  padding: 4px 5px; /* diminui o padding */
+  font-size: 20px;
+  cursor: pointer;
+  width: auto;    /* remove largura fixa */
+  height: auto;   /* remove altura fixa */
+  border-radius: 4px;
+  display: inline-block;
+}
+.close-modal:hover {
+  color: #000;
+}
+
+/* iframe dentro do modal */
+.iframe-jesusinho {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
 #btnToggleVersiculo {
   width: 200px;
   background-color: #2e7d32;
@@ -213,7 +300,11 @@ h2 {
   color: #2e7d32;
 }
 
+
+
+
 .carousel {
+  object-fit: cover; /* preenche o espaço cortando as bordas se precisar */
   position: relative;
   width: 100%;
   height: 1360px; /* ajuste conforme a altura desejada */
@@ -434,6 +525,64 @@ html {
     max-height: 70%;
   }
 }
+
+/* Modal base */
+
+.modal {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+  position: fixed;
+  z-index: 999;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.9);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal-content {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 8px;
+  transition: transform 0.4s ease;
+  transform: scale(0.7);
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+  object-fit: contain; /* garante que a imagem não distorça */
+}
+
+.modal.show .modal-content {
+  transform: scale(1);
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: white;
+  font-size: 40px;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.3s ease;
+  z-index: 1001;
+}
+
+.close:hover {
+  color: #ccc;
+}
+
+
+
 @media (max-width: 480px) {
   #versiculo {
     max-width: 95%;
@@ -441,6 +590,7 @@ html {
     padding: 20px 15px;
     font-size: 0.9rem;
   }
+
 
   #btnToggleVersiculo {
     font-size: 0.75rem;
