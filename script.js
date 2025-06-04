@@ -1,37 +1,63 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Carrossel de imagens
+  // Elementos principais
   const imagens = document.querySelectorAll('.carousel img');
   const modal = document.getElementById("modal");
   const modalImg = document.getElementById("modal-img");
-  const closeModal = document.querySelector(".close");
+  const closeModalBtn = document.querySelector(".close"); // modal carrossel
   const btnPrev = document.querySelector('.carousel-btn.prev');
   const btnNext = document.querySelector('.carousel-btn.next');
-
-  // Carrossel de vídeos
+  let videoIndex = 0;
   const videoSlides = document.querySelectorAll('.video-slide');
   const videoPrev = document.querySelector('.video-btn.prev');
   const videoNext = document.querySelector('.video-btn.next');
 
-  // Versículo
-  const btn = document.getElementById('btnToggleVersiculo');
-  const conteudo = document.getElementById('conteudoVersiculo');
+  const btnVersiculo = document.getElementById('btnToggleVersiculo');
+  const conteudoVersiculo = document.getElementById('conteudoVersiculo');
 
-  // Versículo toggle
-  if (btn && conteudo) {
-    btn.addEventListener('click', () => {
-      if (conteudo.style.display === 'none' || conteudo.style.display === '') {
-        conteudo.style.display = 'block';
-        btn.textContent = 'Esconder Versículo';
+  // Modal Jesusinho
+  const btnJesusinho = document.getElementById('btn-jesusinho');
+  const modalJesusinho = document.getElementById('modal-jesusinho');
+  const closeModalBtnJesusinho = document.getElementById('close-modal');
+
+  btnJesusinho.addEventListener('click', () => {
+    modalJesusinho.style.display = 'flex';
+  });
+
+  closeModalBtnJesusinho.addEventListener('click', () => {
+    modalJesusinho.style.display = 'none';
+  });
+
+  // Fechar modal Jesusinho ao clicar fora da área modal
+  modalJesusinho.addEventListener('click', (event) => {
+    if (event.target === modalJesusinho) {
+      modalJesusinho.style.display = 'none';
+    }
+  });
+
+  // --- Versículo toggle com aria e hidden ---
+  if (btnVersiculo && conteudoVersiculo) {
+    // Inicializa estado
+    conteudoVersiculo.setAttribute('hidden', '');
+    btnVersiculo.setAttribute('aria-expanded', 'false');
+
+    btnVersiculo.addEventListener('click', () => {
+      const isHidden = conteudoVersiculo.hasAttribute('hidden');
+      if (isHidden) {
+        conteudoVersiculo.removeAttribute('hidden');
+        btnVersiculo.setAttribute('aria-expanded', 'true');
+        btnVersiculo.textContent = 'Esconder Versículo';
+        conteudoVersiculo.focus();
       } else {
-        conteudo.style.display = 'none';
-        btn.textContent = 'Versículo base';
+        conteudoVersiculo.setAttribute('hidden', '');
+        btnVersiculo.setAttribute('aria-expanded', 'false');
+        btnVersiculo.textContent = 'Versículo base';
+        btnVersiculo.focus();
       }
     });
   }
 
-  // Controle do carrossel de vídeos
+  // --- Controle do carrossel de vídeos ---
   let currentVideo = 0;
-
   function showVideo(index) {
     videoSlides.forEach(slide => slide.classList.remove('active'));
     if (videoSlides[index]) {
@@ -50,12 +76,11 @@ document.addEventListener('DOMContentLoaded', () => {
       showVideo(currentVideo);
     });
   }
-
   if (videoSlides.length > 0) {
     showVideo(currentVideo);
   }
 
-  // Carrossel de imagens
+  // --- Carrossel de imagens ---
   let indice = 0;
   let intervalo = null;
 
@@ -81,36 +106,57 @@ document.addEventListener('DOMContentLoaded', () => {
     if (intervalo) clearInterval(intervalo);
   }
 
+  // --- Modal do carrossel ---
+  function openModal(img) {
+    pararCarrossel();
+    modalImg.src = img.src;
+    modalImg.alt = img.alt;
+    modal.classList.add('show');
+    modal.removeAttribute('hidden');
+    document.body.style.overflow = 'hidden'; // trava scroll da página
+    modal.focus();
+  }
+
+  function closeModal() {
+    modal.classList.remove('show');
+    modal.setAttribute('hidden', '');
+    modalImg.src = '';
+    modalImg.alt = '';
+    document.body.style.overflow = '';
+    iniciarCarrossel();
+  }
+
   if (imagens.length > 0) {
     mostrarImagem(0);
     iniciarCarrossel();
 
-    imagens.forEach((img) => {
-      img.addEventListener('click', () => {
-        pararCarrossel();
-        modal.style.display = "block";
-        modalImg.src = img.src;
+    imagens.forEach(img => {
+      // Torna as imagens focáveis para acessibilidade
+      img.setAttribute('tabindex', '0');
+
+      img.addEventListener('click', () => openModal(img));
+
+      img.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openModal(img);
+        }
       });
     });
 
-    if (closeModal) {
-      closeModal.onclick = () => {
-        modal.style.display = "none";
-        iniciarCarrossel();
-      };
+    if (closeModalBtn) {
+      closeModalBtn.addEventListener('click', closeModal);
     }
 
     modal.addEventListener('click', (e) => {
       if (e.target === modal) {
-        modal.style.display = "none";
-        iniciarCarrossel();
+        closeModal();
       }
     });
 
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && getComputedStyle(modal).display !== 'none') {
-        modal.style.display = "none";
-        iniciarCarrossel();
+      if (e.key === 'Escape' && modal.classList.contains('show')) {
+        closeModal();
       }
     });
 
@@ -129,9 +175,5 @@ document.addEventListener('DOMContentLoaded', () => {
       btnPrev.addEventListener('click', () => ajustarIndice('anterior'));
       btnNext.addEventListener('click', () => ajustarIndice('proxima'));
     }
-      function abrirJesusinho() {
-    alert("Jesusinho está vindo 🙌 (aqui você chama o assistente)");
-    // Aqui você pode abrir um modal, iframe ou chamar uma função real do Jesusinho
-  }
   }
 });
