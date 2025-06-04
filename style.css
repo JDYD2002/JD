@@ -16,6 +16,31 @@ body {
   border-right: 2px solid white;
   animation: blink-caret 0.75s step-end infinite;
 }
+#chat-box {
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 1rem;
+  background: #f8f8f8;
+  border-radius: 8px;
+}
+
+.mensagem {
+  margin-bottom: 10px;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.mensagem.usuario {
+  text-align: right;
+  color: #333;
+  font-weight: bold;
+}
+
+.mensagem.jesusinho {
+  text-align: left;
+  color: #2a8;
+}
+
 
 @keyframes blink-caret {
   50% {
@@ -25,7 +50,7 @@ body {
 .close-btn {
   position: absolute;  /* deixa fixo em relação ao modal */
   top: 1px;           /* distância do topo da caixa modal */
-  right: 368px;         /* distância da direita da caixa modal */
+  right: 373px;         /* distância da direita da caixa modal */
   font-size: 28px;     /* tamanho do "X" */
   font-weight: bold;
   color: #333;         /* cor do "X" */
@@ -64,7 +89,7 @@ body {
 
 /* Modal */
 #modal-jesusinho {
- display: none;
+display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -620,4 +645,16 @@ html {
     height: 44px;
     font-size: 2rem;
   }
+}
+/* Aumenta o toque no mobile */
+@media (max-width: 480px) {
+  .close-btn {
+    top: 10px !important;
+    right: 10px !important;
+    font-size: 26px;
+  }
+}
+
+.close-btn:hover {
+  color: #d33;
 }
