@@ -151,16 +151,61 @@
   }
 typeWriter();
 </script>
-<!-- Botão flutuante Jesusinho -->
-<button id="btn-jesusinho" class="btn-jesusinho" title="Abrir Jesusinho Virtual"><img src="assets/vs2.png" alt="Logo" tabindex="0" /></button>
+ <!-- Botão flutuante Jesusinho -->
+  <button id="btn-jesusinho" class="btn-jesusinho" title="Abrir Jesusinho Virtual">
+    <img src="assets/vs2.png" alt="Logo" tabindex="0" />
+  </button>
 
-<!-- Modal Jesusinho -->
-<div id="modal-jesusinho" class="modal-jesusinho">
-  <div class="modal-content-jesusinho">
-       <button id="close-modal" class="close-btn" aria-label="Fechar">&times;</button>
-    <iframe src="https://jesusinho.netlify.app/" frameborder="0" class="iframe-jesusinho"></iframe>
+  <!-- Modal Jesusinho -->
+  <div id="modal-jesusinho" class="modal-jesusinho" style="display:none;">
+    <div class="modal-content-jesusinho">
+      <button id="close-modal" class="close-btn" aria-label="Fechar">&times;</button>
+      
+      <!-- Escolha: iframe OU componente -->
+      <!-- <iframe src="https://jesusinho.netlify.app/" frameborder="0" class="iframe-jesusinho"></iframe> -->
+      
+      <jesusinho-bot></jesusinho-bot>
+    </div>
   </div>
-</div>
 
+  <script src="script.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>AOS.init();</script>
+
+  <script type="module" src="./jesusinho/jesusinho.js"></script>
+  <script>
+    const btnJesusinho = document.getElementById('btn-jesusinho');
+    const modalJesusinho = document.getElementById('modal-jesusinho');
+    const closeModal = document.getElementById('close-modal');
+
+    btnJesusinho.addEventListener('click', () => {
+      modalJesusinho.style.display = 'block';
+    });
+
+    closeModal.addEventListener('click', () => {
+      modalJesusinho.style.display = 'none';
+    });
+
+    window.addEventListener('click', (e) => {
+      if (e.target === modalJesusinho) {
+        modalJesusinho.style.display = 'none';
+      }
+    });
+  </script>
+
+  <script>
+    // Código do typeWriter que você já tem
+    const fullText = "Jovens Discípulos";
+    const titleElement = document.getElementById("animated-title");
+    let index = 0;
+
+    function typeWriter() {
+      if (index < fullText.length) {
+        titleElement.textContent += fullText.charAt(index);
+        index++;
+        setTimeout(typeWriter, 150);
+      }
+    }
+    typeWriter();
+  </script>
 </body>
-</html>
